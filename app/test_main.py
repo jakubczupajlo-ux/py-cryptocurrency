@@ -1,4 +1,5 @@
 from unittest import mock
+from typing import Union
 import pytest
 from app.main import cryptocurrency_action
 
@@ -18,12 +19,12 @@ from app.main import cryptocurrency_action
     ]
 )
 def test_cryptocurrency_action(
-        current_rate,
-        prediction_rate,
-        expected
-):
+    current_rate: Union[int, float],
+    prediction_rate: Union[int, float],
+    expected: str
+) -> None:
     with mock.patch(
-            "app.main.get_exchange_rate_prediction"
+        "app.main.get_exchange_rate_prediction"
     ) as mocked_prediction:
         mocked_prediction.return_value = prediction_rate
 
